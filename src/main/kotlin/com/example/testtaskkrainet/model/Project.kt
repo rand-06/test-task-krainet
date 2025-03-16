@@ -7,8 +7,8 @@ import jakarta.persistence.*
 class Project (
 
         @Column(name = "name")
-        val name: String = "",
+        var name: String = "",
 
         @OneToMany(mappedBy = "projectId")
-        val records: List<Record>? = null
+        var records: List<Record>? = null
 ) : ExtendedEntity()

@@ -6,5 +6,5 @@ import jakarta.persistence.*
 abstract class ExtendedEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    open var id: Long = 0L
+    open val id: Long = 0L
 }

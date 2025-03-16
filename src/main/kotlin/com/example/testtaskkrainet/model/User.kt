@@ -8,8 +8,8 @@ import jakarta.persistence.*
 class User (
 
         @Column(name = "name")
-        val name: String = "",
+        var name: String = "",
 
         @OneToMany(mappedBy = "userId")
-        val records: List<Record>? = null
+        var records: List<Record>? = null
 ) : ExtendedEntity()
