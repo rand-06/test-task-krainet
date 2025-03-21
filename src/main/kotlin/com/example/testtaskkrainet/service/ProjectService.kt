@@ -13,12 +13,16 @@ class ProjectService (val projectRepository: ProjectRepository){
         return projectRepository.save(project.toProject())
     }
 
+    fun getAll(): List<Project>{
+        return projectRepository.findAll()
+    }
+
     fun getProject(id: Long): Project? {
         return projectRepository.findByIdOrNull(id)
     }
 
     fun editProject(project: Project) : Project?{
-        var project0 = projectRepository.findByIdOrNull(project.id)?: return null
+        val project0 = projectRepository.findByIdOrNull(project.id)?: return null
         project0.name = project.name
         return projectRepository.save(project0)
     }

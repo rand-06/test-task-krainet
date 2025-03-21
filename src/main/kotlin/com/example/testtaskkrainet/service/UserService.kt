@@ -17,8 +17,12 @@ class UserService (val userRepository: UserRepository) {
         return userRepository.findByIdOrNull(id)
     }
 
+    fun allUsers():List<User>{
+        return userRepository.findAll()
+    }
+
     fun updateUser(user: User) : User? {
-        var user0 = userRepository.findByIdOrNull(user.id)?: return null
+        val user0 = userRepository.findByIdOrNull(user.id)?: return null
         user0.name = user.name
         return userRepository.save(user0)
     }
