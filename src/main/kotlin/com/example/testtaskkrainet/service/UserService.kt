@@ -8,7 +8,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
-class UserService (val userRepository: UserRepository) {
+class UserService (val userRepository: UserRepository, val recordService: RecordService) {
     fun createUser(user: CreateUserDto) : User {
         return userRepository.save(user.toUser())
     }
@@ -28,6 +28,7 @@ class UserService (val userRepository: UserRepository) {
     }
 
     fun deleteUser(id: Long){
+        recordService.getRecordsByUserId(id).forEach { i -> recordService.deleteRecord(i.id) }
         userRepository.deleteById(id)
     }
 }

@@ -8,7 +8,7 @@ import com.example.testtaskkrainet.tools.*
 import org.springframework.stereotype.Service
 
 @Service
-class ProjectService (val projectRepository: ProjectRepository){
+class ProjectService (val projectRepository: ProjectRepository, val recordService: RecordService){
     fun createProject(project: CreateProjectDto) : Project{
         return projectRepository.save(project.toProject())
     }
@@ -28,6 +28,7 @@ class ProjectService (val projectRepository: ProjectRepository){
     }
 
     fun deleteProject(id: Long){
+        recordService.getRecordsByProjectId(id).forEach { i -> recordService.deleteRecord(i.id) }
         projectRepository.deleteById(id)
     }
 }
